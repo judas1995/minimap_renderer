@@ -140,7 +140,7 @@ class LayerFragBase(LayerBase):
 
                 line.append(5)
 
-                if not is_fragger_building:
+                if not is_fragger_building and f_species:
                     line.append(
                         (
                             self._renderer.resman.load_image(
@@ -167,7 +167,7 @@ class LayerFragBase(LayerBase):
                     line.append([kd_name, COLORS_NORMAL[1]])
 
                 line.append(5)
-                if not is_killed_building:
+                if not is_killed_building and k_species:
                     line.append(
                         (
                             self._renderer.resman.load_image(
@@ -191,7 +191,7 @@ class LayerFragBase(LayerBase):
 
                 line.append(5)
 
-                if not is_fragger_building:
+                if not is_fragger_building and f_species:
                     line.append(
                         (
                             self._renderer.resman.load_image(
@@ -219,7 +219,7 @@ class LayerFragBase(LayerBase):
 
                 line.append(5)
 
-                if not is_killed_building:
+                if not is_killed_building and k_species:
                     line.append(
                         (
                             self._renderer.resman.load_image(

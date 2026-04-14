@@ -64,7 +64,9 @@ class LayerShipBase(LayerBase):
         )
 
     def _get_max_dist(self):
-        ship = self._ships[self._owner.ship_params_id]
+        ship = self._ships.get(self._owner.ship_params_id, {})
+        if not ship:
+            return -1
         if ship["species"] in ["AirCarrier", "Submarine"]:
             return -1
 
@@ -118,7 +120,7 @@ class LayerShipBase(LayerBase):
 
             holder = self._holders[vehicle.player_id]
             player = self._replay_data.player_info[vehicle.player_id]
-            ship = self._ships[player.ship_params_id]
+            ship = self._ships.get(player.ship_params_id, {"species": "Cruiser", "level": 10})
 
             owner_view_range = self._owner_view_range
 
@@ -142,7 +144,7 @@ class LayerShipBase(LayerBase):
                 distance_bw = hypot(
                     vehicle.x - owner_vehicle.x, vehicle.y - owner_vehicle.y
                 )
-                owner_ship = self._ships[self._owner.ship_params_id]
+                owner_ship = self._ships.get(self._owner.ship_params_id, {"level": 10})
                 owner_view_range *= 1.25
                 owner_view_range = max(
                     owner_view_range, MIN_VIEW_DISTANCES[owner_ship["level"]]

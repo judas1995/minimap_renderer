@@ -59,7 +59,7 @@ def generate_holder(
         else:
             font_color = COLORS_NORMAL[player.relation]
 
-        info = ships[player.ship_params_id]
+        info = ships.get(player.ship_params_id, {"name": str(player.ship_params_id)})
         holder: Image.Image = Image.new("RGBA", (hw, hh))
         holder_draw: ImageDraw.ImageDraw = ImageDraw.Draw(holder)
         text_w, text_h = font.getbbox(info["name"])[2:]

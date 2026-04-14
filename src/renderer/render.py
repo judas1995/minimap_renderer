@@ -359,7 +359,7 @@ class Renderer(RendererBase):
             builds.append(
                 {
                     "name": player.name,
-                    "ship": ships[player.ship_params_id]["name"],
+                    "ship": ships.get(player.ship_params_id, {}).get("name", str(player.ship_params_id)),
                     "clan": player.clan_tag,
                     "relation": player.relation,
                     "build_url": build_url,
