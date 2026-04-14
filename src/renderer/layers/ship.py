@@ -302,7 +302,11 @@ class LayerShipBase(LayerBase):
                     try:
                         index = abilities["id_to_index"][aid]
                     except KeyError:
-                        index = self._abilities["clan"][aid]
+                        try:
+                            index = self._abilities["clan"][aid]
+                        except KeyError:
+                            x_pos += 20
+                            continue
                     filename = f"consumable_{index}.png"
                     c_image = self._renderer.resman.load_image(
                         filename,
