@@ -128,9 +128,9 @@ class LayerShipBase(LayerBase):
                 owner_vehicle.vehicle_id, None
             ):
                 if 1 in acs:
-                    owner_abilities = self._abilities[
-                        self._owner.ship_params_id
-                    ]
+                    owner_abilities = self._abilities.get(
+                        self._owner.ship_params_id, {}
+                    )
                     if 1 in owner_abilities.get("id_to_index", {}):
                         index = owner_abilities["id_to_index"][1]
                         subtype = owner_abilities["id_to_subtype"][1]
@@ -300,7 +300,7 @@ class LayerShipBase(LayerBase):
                 x_pos = 0
 
                 for aid, _ in ac.items():
-                    abilities = self._abilities[params_id]
+                    abilities = self._abilities.get(params_id, {})
                     try:
                         index = abilities["id_to_index"][aid]
                     except KeyError:
