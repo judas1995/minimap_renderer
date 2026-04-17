@@ -101,7 +101,7 @@ class LayerShotBase(LayerBase):
                 self._projectiles.pop(sid)
 
         projectiles.sort(
-            key=lambda o: self._projectiles_data[o[1]], reverse=True
+            key=lambda o: self._projectiles_data.get(o[1], ""), reverse=True
         )
 
         for projectile in projectiles:

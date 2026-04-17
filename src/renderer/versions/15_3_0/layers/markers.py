@@ -56,6 +56,8 @@ class LayerMarkersBase(LayerBase):
                 continue
 
             player = self._replay_data.player_info[vehicle.player_id]
+            if player.ship_params_id not in self._abilities:
+                continue
             abilities = self._abilities[player.ship_params_id]
             id_to_subtype = abilities["id_to_subtype"]
             id_to_index = abilities["id_to_index"]
